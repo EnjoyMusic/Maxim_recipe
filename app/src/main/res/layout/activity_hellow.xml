@@ -1,20 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/welcome"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:id="@+id/ll_welcome"
     >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="美心菜谱"
+        android:textStyle="bold"
+        android:textColor="#000"
+        android:textSize="25sp"
+        />
+    <TextView
+        android:id="@+id/tv_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="最全,最优的菜谱"
+        android:textColor="#000"
+        android:textSize="40sp"
+        />
+    <TextView
+        android:id="@+id/tv_2"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="收录菜谱数超过四十万道"
+        android:textColor="#ccc"
+        android:textSize="20sp"
+        />
+    <TextView
+        android:id="@+id/tv_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="每天通过手机发表十万多张菜谱成果照"
+        android:textColor="#ccc"
+        android:textSize="20sp"
+        />
+
 <Button
-    android:layout_width="80dp"
-    android:layout_height="40dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
     android:layout_centerHorizontal="true"
-    android:layout_marginBottom="50dp"
-    android:text="进入"
+    android:layout_marginBottom="100dp"
+    android:text="点击进入"
     android:textSize="20sp"
     android:textColor="#fff"
     android:background="@android:color/transparent"
-    android:drawableRight="@drawable/start"
     />
-</RelativeLayout>
+</LinearLayout>

@@ -13,7 +13,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import vo.comment;
+import vo.Comment;
+
 /**
  *5.取得评论
  */
@@ -21,12 +22,12 @@ import vo.comment;
 
 
 public class Http_comments {
-    private static List<comment> commentList=new ArrayList<comment>();
+    private static List<Comment> commentList=new ArrayList<Comment>();
     private static HttpURLConnection connection;
     private static InputStream is;
     private static ByteArrayOutputStream baos;
 
-    public static List<comment> getcomments(int menuid){
+    public static List<Comment> getcomments(int menuid){
         URL url;
         try {
             url = new URL(values.Http_comments);
@@ -72,9 +73,9 @@ public class Http_comments {
                     String minutes = menu.getString("minutes");
                     String time = menu.getString("time");
                     String day = menu.getString("day");
-                   // menuinfo menuinfo=new menuinfo(spic,assistmaterial,notlikes,menuname,abstracts,mainmaterial,menuid,typeid,likes);
-                    comment comment=new comment(mid,region,ptime,date,hours,seconds,month,nanos,timezoneOffset,year,minutes,time,day);
-                    commentList.add(comment);
+                   // Menuinfo Menuinfo=new Menuinfo(spic,assistmaterial,notlikes,menuname,abstracts,mainmaterial,menuid,typeid,likes);
+                    Comment Comment =new Comment(mid,region,ptime,date,hours,seconds,month,nanos,timezoneOffset,year,minutes,time,day);
+                    commentList.add(Comment);
                 }
             }
         } catch (MalformedURLException e) {

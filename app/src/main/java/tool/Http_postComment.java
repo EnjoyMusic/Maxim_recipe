@@ -33,7 +33,7 @@ public class Http_postComment {
         connection.setDoInput(true);
         connection.setUseCaches(false);
         StringBuffer stringBuffer=new StringBuffer();
-        stringBuffer.append("menuid=").append(menuid).append("&").append("comment=").append(connection).append("&").append("region").append("安徽六安");
+        stringBuffer.append("menuid=").append(menuid).append("&").append("Comment=").append(connection).append("&").append("region").append("安徽六安");
         byte[] bytes = stringBuffer.toString().getBytes();
         connection.setRequestProperty("Content-Length", String.valueOf(bytes.length));
         OutputStream outputStream = connection.getOutputStream();

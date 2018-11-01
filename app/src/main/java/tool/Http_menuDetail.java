@@ -15,7 +15,6 @@ import java.util.List;
 
 import vo.MenuDetail;
 import vo.Step;
-import vo.menuinfo;
 
 /**
  * 3.获取菜谱详情
@@ -74,7 +73,7 @@ public class Http_menuDetail {
                     String description = step.getString("description");
                     String menuid1 = step.getString("menuid");
                     String pic = step.getString("pic");
-                    //menuinfo menuinfo=new menuinfo(spic,assistmaterial,notlikes,menuname,abstracts,mainmaterial,menuid,typeid,likes);
+                    //Menuinfo Menuinfo=new Menuinfo(spic,assistmaterial,notlikes,menuname,abstracts,mainmaterial,menuid,typeid,likes);
                     Step step1=new Step(stepid,description,menuid1,pic);
                     stepList.add(step1);
                 }

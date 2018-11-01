@@ -13,20 +13,20 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import vo.menuinfo;
-import vo.request_menu;
+import vo.Menuinfo;
+import vo.Request_menu;
 
 /**
  * 2.根据分类的 ID 检索菜谱列表
  */
 
 public class Http_menus {
-    private static List<menuinfo> menuinfoList=new ArrayList<menuinfo>();
+    private static List<Menuinfo> menuinfoList=new ArrayList<Menuinfo>();
     private static HttpURLConnection connection;
     private static InputStream is;
     private static ByteArrayOutputStream baos;
 
-    public static List<menuinfo> getmenus(request_menu request){
+    public static List<Menuinfo> getmenus(Request_menu request){
         URL url;
         try {
             url = new URL(values.Http_mmenus);
@@ -68,8 +68,8 @@ public class Http_menus {
                     String menuid = menu.getString("menuid");
                     String typeid = menu.getString("typeid");
                     String likes = menu.getString("likes");
-                    menuinfo menuinfo=new menuinfo(spic,assistmaterial,notlikes,menuname,abstracts,mainmaterial,menuid,typeid,likes);
-                    menuinfoList.add(menuinfo);
+                    Menuinfo Menuinfo =new Menuinfo(spic,assistmaterial,notlikes,menuname,abstracts,mainmaterial,menuid,typeid,likes);
+                    menuinfoList.add(Menuinfo);
                 }
             }
         } catch (MalformedURLException e) {

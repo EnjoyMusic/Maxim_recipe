@@ -12,18 +12,18 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import vo.vegetableinfo;
+import vo.Vegetableinfo;
 /**
  *1.取得菜谱分类的接口
  */
 
 public class Http_Vegetable{
-    private static List<vegetableinfo> vegetablelist=new ArrayList<>();
+    private static List<Vegetableinfo> vegetablelist=new ArrayList<>();
     private static HttpURLConnection connection;
     private static InputStream is;
     private static ByteArrayOutputStream baos;
 
-    public static List<vegetableinfo> getVegetable(){
+    public static List<Vegetableinfo> getVegetable(){
         URL url;
         try {
             url = new URL(values.Http_Vegetable);
@@ -53,8 +53,8 @@ public class Http_Vegetable{
                     String description = type.getString("description");
                     String typeid = type.getString("typeid");
                     String typename = type.getString("typename");
-                    vegetableinfo vegetableinfo=new vegetableinfo(typepic,description,typeid,typename);
-                    vegetablelist.add(vegetableinfo);
+                    Vegetableinfo Vegetableinfo =new Vegetableinfo(typepic,description,typeid,typename);
+                    vegetablelist.add(Vegetableinfo);
                 }
                 System.out.println(vegetablelist.size());
             }

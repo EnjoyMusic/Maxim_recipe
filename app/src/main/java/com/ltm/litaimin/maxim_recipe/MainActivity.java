@@ -1,14 +1,12 @@
 package com.ltm.litaimin.maxim_recipe;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import tool.Http_Vegetable;
@@ -18,32 +16,32 @@ import tool.Http_menus;
 import tool.Http_postComment;
 import tool.Http_support;
 import vo.MenuDetail;
-import vo.comment;
-import vo.menuinfo;
-import vo.request_menu;
-import vo.vegetableinfo;
+import vo.Comment;
+import vo.Menuinfo;
+import vo.Request_menu;
+import vo.Vegetableinfo;
 
 public class MainActivity extends AppCompatActivity {
 
-    //private List<vegetableinfo> vegetable=new ArrayList<vegetableinfo>();
+    //private List<Vegetableinfo> vegetable=new ArrayList<Vegetableinfo>();
     private TextView tv_cs;
     private TextView tv_cs1;
     private TextView tv_cs2;
     private TextView tv_cs3;
     private TextView tv_cs4;
     private TextView tv_cs5;
-    private List<vegetableinfo> vegetable;
-    private List<menuinfo> getmenus;
+    private List<Vegetableinfo> vegetable;
+    private List<Menuinfo> getmenus;
     private MenuDetail getmenus1;
     private String yes;
-    private List<comment> getcomments;
+    private List<Comment> getcomments;
     private String support;
     Handler mHandel=new Handler(){
 
         @Override
         public void handleMessage(Message msg) {
         StringBuffer is=new StringBuffer();
-            for(vegetableinfo ve: vegetable){
+            for(Vegetableinfo ve: vegetable){
                 is.append(ve.getDescription()).append(ve.getTypeid()).append(ve.getTypename()).append(ve.getTypepic());
             }
 //            tv_cs.setText(is.toString());
@@ -69,7 +67,10 @@ public class MainActivity extends AppCompatActivity {
         tv_cs3 = findViewById(R.id.tv_text3);
         tv_cs4 = findViewById(R.id.tv_text4);
         tv_cs5 = findViewById(R.id.tv_text5);
-        initresult();
+        Intent intent=new Intent(getApplicationContext(),HellowActivity.class);
+        startActivity(intent);
+        //  initresult();
+
       //  Log.i("TAG", String.valueOf(vegetable.size()));
     }
     private void initresult() {
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 //vegetable=
                 vegetable = Http_Vegetable.getVegetable();
-                getmenus = Http_menus.getmenus(new request_menu(1, 1, 10));
+                getmenus = Http_menus.getmenus(new Request_menu(1, 1, 10));
                 getmenus1 = Http_menuDetail.getmenus(1);
                 getcomments = Http_comments.getcomments(1);
                 yes = Http_support.support(1, "yes");
