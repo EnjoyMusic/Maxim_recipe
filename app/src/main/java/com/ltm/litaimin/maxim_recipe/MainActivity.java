@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 //            tv_cs3.setText(yes);
 //            tv_cs4.setText(getcomments.size());
 //            tv_cs5.setText(support);
-            //System.out.println(getmenus.size()+getmenus1.toString()+yes+getcomments.size()+support);
+            System.out.println(is.toString()+getmenus.size()+getmenus1.toString()+yes+getcomments.size()+support);
         }
     };
 
