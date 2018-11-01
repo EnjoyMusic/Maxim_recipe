@@ -18,7 +18,7 @@ import vo.Vegetableinfo;
  */
 
 public class Http_Vegetable{
-    private static List<Vegetableinfo> vegetablelist=new ArrayList<>();
+    private static List<Vegetableinfo> vegetablelist=null;
     private static HttpURLConnection connection;
     private static InputStream is;
     private static ByteArrayOutputStream baos;
@@ -44,9 +44,9 @@ public class Http_Vegetable{
                 }
                 baos.flush();
                 String str = baos.toString();
-                System.out.println(str);
                 JSONObject jsonObject = new JSONObject(str);
                 JSONArray types = jsonObject.getJSONArray("types");
+                vegetablelist=new ArrayList<Vegetableinfo>();
                 for(int i=0;i<types.length();i++){
                     JSONObject type = types.getJSONObject(i);
                     String typepic = type.getString("typepic");
@@ -56,7 +56,6 @@ public class Http_Vegetable{
                     Vegetableinfo Vegetableinfo =new Vegetableinfo(typepic,description,typeid,typename);
                     vegetablelist.add(Vegetableinfo);
                 }
-                System.out.println(vegetablelist.size());
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();

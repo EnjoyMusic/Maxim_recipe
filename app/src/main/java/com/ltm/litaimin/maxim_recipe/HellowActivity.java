@@ -63,9 +63,9 @@ public class HellowActivity extends Activity{
              */
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent();
+                Intent intent=new Intent(getApplicationContext(),HomeActivity.class);
                 intent.putExtra("networkinfo",activeNetworkInfo);
-               // startActivity(intent);
+                startActivity(intent);
                 System.out.println("进入HomeActivity");
             }
         });

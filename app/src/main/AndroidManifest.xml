@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".HellowActivity" />
+        <activity android:name=".HomeActivity"/>
     </application>
 
 </manifest>

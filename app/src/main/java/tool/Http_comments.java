@@ -1,6 +1,7 @@
 package tool;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
@@ -26,6 +27,7 @@ public class Http_comments {
     private static HttpURLConnection connection;
     private static InputStream is;
     private static ByteArrayOutputStream baos;
+    private static String param;
 
     public static List<Comment> getcomments(int menuid){
         URL url;
@@ -40,8 +42,15 @@ public class Http_comments {
             connection.setDoInput(true);
             connection.setUseCaches(false);
             StringBuffer stringBuffer=new StringBuffer();
-            stringBuffer.append("menuid=").append(menuid);
-            byte[] bytes = stringBuffer.toString().getBytes();
+            JSONObject object = new JSONObject();
+            try {
+                object.put("menuid",+ menuid);
+                param = object.toString();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            System.out.println(param);
+            byte[] bytes = param.getBytes();
             connection.setRequestProperty("Content-Length", String.valueOf(bytes.length));
             OutputStream outputStream = connection.getOutputStream();
             outputStream.write(bytes);
@@ -58,23 +67,26 @@ public class Http_comments {
                 System.out.println(str);
                 JSONObject jsonObject = new JSONObject(str);
                 JSONArray menus = jsonObject.getJSONArray("comments");
+                System.out.println("menus_length"+menus.length());
                 for(int i=0;i<menus.length();i++){
                     JSONObject menu = menus.getJSONObject(i);
                     String mid = menu.getString("menuid");
                     String region = menu.getString("region");
-                    String ptime = menu.getString("ptime");
-                    String date = menu.getString("date");
-                    String hours = menu.getString("hours");
-                    String seconds = menu.getString("seconds");
-                    String month = menu.getString("month");
-                    String nanos = menu.getString("nanos");
-                    String timezoneOffset = menu.getString("timezoneOffset");
-                    String year = menu.getString("year");
-                    String minutes = menu.getString("minutes");
-                    String time = menu.getString("time");
-                    String day = menu.getString("day");
+                    JSONObject ptime = menu.getJSONObject("ptime");
+                    String date = ptime.getString("date");
+                    String hours = ptime.getString("hours");
+                    String seconds = ptime.getString("seconds");
+                    String month = ptime.getString("month");
+                    String nanos = ptime.getString("nanos");
+                    String timezoneOffset = ptime.getString("timezoneOffset");
+                    String year = ptime.getString("year");
+                    String minutes = ptime.getString("minutes");
+                    String time = ptime.getString("time");
+                    String day = ptime.getString("day");
+                    String content=menu.getString("content");
+                    int cid=menu.getInt("cid");
                    // Menuinfo Menuinfo=new Menuinfo(spic,assistmaterial,notlikes,menuname,abstracts,mainmaterial,menuid,typeid,likes);
-                    Comment Comment =new Comment(mid,region,ptime,date,hours,seconds,month,nanos,timezoneOffset,year,minutes,time,day);
+                    Comment Comment =new Comment(mid,region,date,hours,seconds,month,nanos,timezoneOffset,year,minutes,time,day,content,cid);
                     commentList.add(Comment);
                 }
             }

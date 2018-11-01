@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initresult();
         initview();
     }
     private void initview() {
@@ -68,8 +69,8 @@ public class MainActivity extends AppCompatActivity {
         tv_cs4 = findViewById(R.id.tv_text4);
         tv_cs5 = findViewById(R.id.tv_text5);
         Intent intent=new Intent(getApplicationContext(),HellowActivity.class);
-        startActivity(intent);
-        //  initresult();
+       // startActivity(intent);
+
 
       //  Log.i("TAG", String.valueOf(vegetable.size()));
     }
