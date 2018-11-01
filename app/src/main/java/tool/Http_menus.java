@@ -12,7 +12,6 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,45 +32,32 @@ public class Http_menus {
 
     public static List<Menuinfo> getmenus(Request_menu request){
         URL url;
-        JSONObject object = new JSONObject();
-        try {
-            object.put("pagesize",""+ request.getPagesize());
-            object.put("stratid",""+  request.getStartid());
-            object.put("typeid",""+ request.getTypeid());
-            param = object.toString();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
         try {
             url = new URL(values.Http_mmenus);
             connection = (HttpURLConnection)url.openConnection();
             connection.setReadTimeout(5000);
             connection.setConnectTimeout(5000);
-            connection.setRequestProperty("charset", "utf-8");
             connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             connection.setDoOutput(true);
             connection.setDoInput(true);
             connection.setUseCaches(false);
-           // StringBuffer stringBuffer=new StringBuffer();
-            //stringBuffer.append("typecid=").append(""+request.getTypeid()).append("&").append("startid=").append(""+request.getStartid()).append("&").append("pagesize=").append(""+request.getPagesize());
-            byte[] bytes = URLEncoder.encode(param, "UTF-8").getBytes();
+            JSONObject object = new JSONObject();
+            try {
+               // object.put("pagesize",""+request.getPagesize());
+                //object.put("stratid", ""+request.getStartid());
+                object.put("typeid",request.getTypeid());
+                param = object.toString();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             System.out.println(param);
-//            if (param != null && !param.trim().equals("")) {
-//                // 获取URLConnection对象对应的输出流
-//                out = new PrintWriter(connection.getOutputStream());
-//                // 发送请求参数
-//                out.print(param);
-//                // flush输出流的缓冲
-//                out.flush();
-//            }
+            byte[] bytes = param.getBytes();
             connection.setRequestProperty("Content-Length", String.valueOf(bytes.length));
             OutputStream outputStream = connection.getOutputStream();
             outputStream.write(bytes);
-            outputStream.flush();
-            outputStream.close();
-           System.out.println("code:  "+connection.getResponseCode());
             menuinfoList=new ArrayList<Menuinfo>();
+            System.out.println("code:   "+connection.getResponseCode());
             if (connection.getResponseCode() == 200) {
                 is = connection.getInputStream();
                 baos = new ByteArrayOutputStream();

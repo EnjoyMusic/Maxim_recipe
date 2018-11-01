@@ -1,5 +1,7 @@
 package tool;
 
+import android.provider.Settings;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,7 +43,6 @@ public class Http_comments {
             connection.setDoOutput(true);
             connection.setDoInput(true);
             connection.setUseCaches(false);
-            StringBuffer stringBuffer=new StringBuffer();
             JSONObject object = new JSONObject();
             try {
                 object.put("menuid",+ menuid);
@@ -105,6 +106,7 @@ public class Http_comments {
                     e.printStackTrace();
                 }
             }
+            System.out.println(commentList.size());
            return commentList;
         }
     }
