@@ -51,13 +51,13 @@ public class Http_menus {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-           System.out.println(param);
+         //  System.out.println(param);
             byte[] bytes = param.getBytes();
             connection.setRequestProperty("Content-Length", String.valueOf(bytes.length));
             OutputStream outputStream = connection.getOutputStream();
             outputStream.write(bytes);
             menuinfoList=new ArrayList<Menuinfo>();
-            System.out.println("code:   "+connection.getResponseCode());
+          //  System.out.println("code:   "+connection.getResponseCode());
             if (connection.getResponseCode() == 200) {
                 is = connection.getInputStream();
                 baos = new ByteArrayOutputStream();
@@ -68,7 +68,7 @@ public class Http_menus {
                 }
                 baos.flush();
                 String str = baos.toString();
-                System.out.println(str);
+             //   System.out.println(str);
                 JSONObject jsonObject = new JSONObject(str);
                 JSONArray menus = jsonObject.getJSONArray("menus");
                 for(int i=0;i<menus.length();i++){
@@ -101,7 +101,7 @@ public class Http_menus {
                     e.printStackTrace();
                 }
             }
-            System.out.println(menuinfoList.size());
+          //  System.out.println(menuinfoList.size());
            return menuinfoList;
         }
     }

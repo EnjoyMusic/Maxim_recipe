@@ -1,6 +1,7 @@
 package tool;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
@@ -25,6 +26,7 @@ public class Http_menuDetail {
     private static InputStream is;
     private static ByteArrayOutputStream baos;
     private static MenuDetail menuDetail=null;
+    private static String param;
 
     public static MenuDetail getmenus(int mid){
         URL url;
@@ -38,12 +40,19 @@ public class Http_menuDetail {
             connection.setDoOutput(true);
             connection.setDoInput(true);
             connection.setUseCaches(false);
-            StringBuffer stringBuffer=new StringBuffer();
-            stringBuffer.append("menuid=").append(mid);
-            byte[] bytes = stringBuffer.toString().getBytes();
+            JSONObject object = new JSONObject();
+            try {
+                object.put("menuid",mid);
+                param = object.toString();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+          //  System.out.println(param);
+            byte[] bytes = param.getBytes();
             connection.setRequestProperty("Content-Length", String.valueOf(bytes.length));
             OutputStream outputStream = connection.getOutputStream();
             outputStream.write(bytes);
+
             if (connection.getResponseCode() == 200) {
                 is = connection.getInputStream();
                 baos = new ByteArrayOutputStream();
@@ -54,7 +63,7 @@ public class Http_menuDetail {
                 }
                 baos.flush();
                 String str = baos.toString();
-                System.out.println(str);
+               // System.out.println(str);
                 JSONObject jsonObject = new JSONObject(str);
                 JSONObject menu = jsonObject.getJSONObject("menu");
                 String spic = menu.getString("spic");

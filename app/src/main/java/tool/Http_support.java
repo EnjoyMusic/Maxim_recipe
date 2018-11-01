@@ -1,5 +1,6 @@
 package tool;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
@@ -18,6 +19,7 @@ public class Http_support{
     private static HttpURLConnection connection;
     private static InputStream is;
     private static ByteArrayOutputStream baos;
+    private static String param;
 
     public static String support(int menuid, String yes){
     URL url;
@@ -27,13 +29,20 @@ public class Http_support{
         connection.setReadTimeout(5000);
         connection.setConnectTimeout(5000);
         connection.setRequestMethod("POST");
-        connection.setRequestProperty("Content-Type", "application/json");
+        connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
         connection.setDoOutput(true);
         connection.setDoInput(true);
         connection.setUseCaches(false);
-        StringBuffer stringBuffer=new StringBuffer();
-        stringBuffer.append("menuid:").append(menuid).append(",like:").append(yes);
-        byte[] bytes = stringBuffer.toString().getBytes();
+        JSONObject object = new JSONObject();
+        try {
+            object.put("menuid",menuid);
+            object.put("like",yes);
+            param = object.toString();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+      //  System.out.println(param);
+        byte[] bytes = param.getBytes();
         connection.setRequestProperty("Content-Length", String.valueOf(bytes.length));
         OutputStream outputStream = connection.getOutputStream();
         outputStream.write(bytes);
@@ -47,7 +56,7 @@ public class Http_support{
             }
             baos.flush();
             String str = baos.toString();
-            System.out.println(str);
+          //  System.out.println(str);
             JSONObject jsonObject = new JSONObject(str);
             result = jsonObject.getString("result");
         }

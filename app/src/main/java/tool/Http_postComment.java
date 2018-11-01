@@ -1,5 +1,6 @@
 package tool;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
@@ -19,6 +20,7 @@ public class Http_postComment {
     private static HttpURLConnection connection;
     private static InputStream is;
     private static ByteArrayOutputStream baos;
+    private static String param;
 
     public static String support(int menuid,String Comment){
     URL url;
@@ -32,9 +34,17 @@ public class Http_postComment {
         connection.setDoOutput(true);
         connection.setDoInput(true);
         connection.setUseCaches(false);
-        StringBuffer stringBuffer=new StringBuffer();
-        stringBuffer.append("menuid=").append(menuid).append("&").append("Comment=").append(connection).append("&").append("region").append("安徽六安");
-        byte[] bytes = stringBuffer.toString().getBytes();
+        JSONObject object = new JSONObject();
+        try {
+            object.put("menuid",menuid);
+            object.put("comment",Comment);
+            object.put("region","安徽六安");
+            param = object.toString();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        byte[] bytes = param.getBytes();
         connection.setRequestProperty("Content-Length", String.valueOf(bytes.length));
         OutputStream outputStream = connection.getOutputStream();
         outputStream.write(bytes);
@@ -48,7 +58,6 @@ public class Http_postComment {
             }
             baos.flush();
             String str = baos.toString();
-            System.out.println(str);
             JSONObject jsonObject = new JSONObject(str);
             result = jsonObject.getString("result");
         }
