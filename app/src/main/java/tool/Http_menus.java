@@ -44,14 +44,14 @@ public class Http_menus {
             connection.setUseCaches(false);
             JSONObject object = new JSONObject();
             try {
-               // object.put("pagesize",""+request.getPagesize());
-                //object.put("stratid", ""+request.getStartid());
                 object.put("typeid",request.getTypeid());
+                object.put("startid",request.getStartid());
+                object.put("pagesize",request.getPagesize());
                 param = object.toString();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            System.out.println(param);
+           System.out.println(param);
             byte[] bytes = param.getBytes();
             connection.setRequestProperty("Content-Length", String.valueOf(bytes.length));
             OutputStream outputStream = connection.getOutputStream();
@@ -101,18 +101,9 @@ public class Http_menus {
                     e.printStackTrace();
                 }
             }
+            System.out.println(menuinfoList.size());
            return menuinfoList;
         }
     }
-    private String JsonGet(String name, String pass) {
-        JSONObject object = new JSONObject();
-        try {
-            object.put("name", name);
-            object.put("pass", pass);
-            return object.toString();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+
     }

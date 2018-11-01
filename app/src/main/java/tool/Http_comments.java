@@ -50,7 +50,7 @@ public class Http_comments {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            System.out.println(param);
+          //  System.out.println(param);
             byte[] bytes = param.getBytes();
             connection.setRequestProperty("Content-Length", String.valueOf(bytes.length));
             OutputStream outputStream = connection.getOutputStream();
@@ -65,10 +65,10 @@ public class Http_comments {
                 }
                 baos.flush();
                 String str = baos.toString();
-                System.out.println(str);
+              //  System.out.println(str);
                 JSONObject jsonObject = new JSONObject(str);
                 JSONArray menus = jsonObject.getJSONArray("comments");
-                System.out.println("menus_length"+menus.length());
+               // System.out.println("menus_length"+menus.length());
                 for(int i=0;i<menus.length();i++){
                     JSONObject menu = menus.getJSONObject(i);
                     String mid = menu.getString("menuid");
@@ -106,7 +106,7 @@ public class Http_comments {
                     e.printStackTrace();
                 }
             }
-            System.out.println(commentList.size());
+           // System.out.println(commentList.size());
            return commentList;
         }
     }
