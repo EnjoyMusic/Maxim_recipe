@@ -10,6 +10,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ *6.发布评论
+ */
 
 public class Http_postComment {
    private static String result="err";

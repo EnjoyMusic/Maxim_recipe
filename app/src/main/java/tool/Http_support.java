@@ -10,8 +10,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-
-public class Http_support {
+/**
+ * 4.菜谱的评价按钮
+ */
+public class Http_support{
    private static String result="err";
     private static HttpURLConnection connection;
     private static InputStream is;

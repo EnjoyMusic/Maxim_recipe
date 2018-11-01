@@ -17,7 +17,9 @@ import vo.MenuDetail;
 import vo.Step;
 import vo.menuinfo;
 
-
+/**
+ * 3.获取菜谱详情
+ */
 public class Http_menuDetail {
     private static List<Step> stepList=new ArrayList<Step>();
     private static HttpURLConnection connection;

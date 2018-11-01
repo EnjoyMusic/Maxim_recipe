@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vo.vegetableinfo;
+/**
+ *1.取得菜谱分类的接口
+ */
 
 public class Http_Vegetable{
     private static List<vegetableinfo> vegetablelist=new ArrayList<>();

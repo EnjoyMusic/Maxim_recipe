@@ -1,0 +1,12 @@
+package com.ltm.litaimin.maxim_recipe;
+
+import android.app.Activity;
+import android.os.Bundle;
+
+public class HellowActivity extends Activity {
+    @Override
+    protected void onCreate( Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_hellow);
+    }
+}

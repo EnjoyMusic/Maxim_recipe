@@ -16,6 +16,9 @@ import java.util.List;
 import vo.menuinfo;
 import vo.request_menu;
 
+/**
+ * 2.根据分类的 ID 检索菜谱列表
+ */
 
 public class Http_menus {
     private static List<menuinfo> menuinfoList=new ArrayList<menuinfo>();

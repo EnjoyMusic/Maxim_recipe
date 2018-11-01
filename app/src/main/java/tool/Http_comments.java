@@ -14,7 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vo.comment;
-import vo.menuinfo;
+/**
+ *5.取得评论
+ */
+
 
 
 public class Http_comments {
