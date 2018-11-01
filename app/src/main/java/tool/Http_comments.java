@@ -26,7 +26,7 @@ public class Http_comments {
     public static List<comment> getcomments(int menuid){
         URL url;
         try {
-            url = new URL(values.Http_mmenus);
+            url = new URL(values.Http_comments);
             connection = (HttpURLConnection)url.openConnection();
             connection.setReadTimeout(5000);
             connection.setConnectTimeout(5000);
@@ -51,6 +51,7 @@ public class Http_comments {
                 }
                 baos.flush();
                 String str = baos.toString();
+                System.out.println(str);
                 JSONObject jsonObject = new JSONObject(str);
                 JSONArray menus = jsonObject.getJSONArray("comments");
                 for(int i=0;i<menus.length();i++){

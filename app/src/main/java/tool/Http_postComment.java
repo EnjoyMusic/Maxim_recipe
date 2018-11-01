@@ -17,10 +17,10 @@ public class Http_postComment {
     private static InputStream is;
     private static ByteArrayOutputStream baos;
 
-    public static String support(int menuid){
+    public static String support(int menuid,String Comment){
     URL url;
     try {
-        url = new URL(values.Http_mmenus);
+        url = new URL(values.Http_postComment);
         connection = (HttpURLConnection)url.openConnection();
         connection.setReadTimeout(5000);
         connection.setConnectTimeout(5000);
@@ -30,7 +30,7 @@ public class Http_postComment {
         connection.setDoInput(true);
         connection.setUseCaches(false);
         StringBuffer stringBuffer=new StringBuffer();
-        stringBuffer.append("menuid=").append(menuid);
+        stringBuffer.append("menuid=").append(menuid).append("&").append("comment=").append(connection).append("&").append("region").append("安徽六安");
         byte[] bytes = stringBuffer.toString().getBytes();
         connection.setRequestProperty("Content-Length", String.valueOf(bytes.length));
         OutputStream outputStream = connection.getOutputStream();
@@ -45,6 +45,7 @@ public class Http_postComment {
             }
             baos.flush();
             String str = baos.toString();
+            System.out.println(str);
             JSONObject jsonObject = new JSONObject(str);
             result = jsonObject.getString("result");
         }

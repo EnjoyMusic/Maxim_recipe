@@ -7,11 +7,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +51,7 @@ public class Http_menus {
                 }
                 baos.flush();
                 String str = baos.toString();
+                System.out.println(str);
                 JSONObject jsonObject = new JSONObject(str);
                 JSONArray menus = jsonObject.getJSONArray("menus");
                 for(int i=0;i<menus.length();i++){

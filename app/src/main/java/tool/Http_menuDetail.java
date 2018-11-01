@@ -53,6 +53,7 @@ public class Http_menuDetail {
                 }
                 baos.flush();
                 String str = baos.toString();
+                System.out.println(str);
                 JSONObject jsonObject = new JSONObject(str);
                 JSONObject menu = jsonObject.getJSONObject("menu");
                 String spic = menu.getString("spic");

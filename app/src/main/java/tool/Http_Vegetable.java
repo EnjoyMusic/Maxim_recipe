@@ -41,6 +41,7 @@ public class Http_Vegetable{
                 }
                 baos.flush();
                 String str = baos.toString();
+                System.out.println(str);
                 JSONObject jsonObject = new JSONObject(str);
                 JSONArray types = jsonObject.getJSONArray("types");
                 for(int i=0;i<types.length();i++){
