@@ -20,6 +20,7 @@
         </activity>
         <activity android:name=".HellowActivity" />
         <activity android:name=".HomeActivity"/>
+        <activity android:name=".CollectActivity" />
     </application>
 
 </manifest>

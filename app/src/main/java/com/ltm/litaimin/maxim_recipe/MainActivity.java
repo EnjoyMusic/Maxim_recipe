@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import tool.Http_Vegetable;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tv_cs3;
     private TextView tv_cs4;
     private TextView tv_cs5;
-    private List<Vegetableinfo> vegetable;
+    private List<Vegetableinfo> vegetable=null;
     private List<Menuinfo> getmenus;
     private MenuDetail getmenus1;
     private String yes;
@@ -40,9 +41,11 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void handleMessage(Message msg) {
+
         StringBuffer is=new StringBuffer();
             for(Vegetableinfo ve: vegetable){
                 is.append(ve.getDescription()).append(ve.getTypeid()).append(ve.getTypename()).append(ve.getTypepic());
+                System.out.println(is);
             }
 //            tv_cs.setText(is.toString());
 //            tv_cs1.setText(getmenus.size());
@@ -50,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 //            tv_cs3.setText(yes);
 //            tv_cs4.setText(getcomments.size());
 //            tv_cs5.setText(support);
-            System.out.println(is.toString()+getmenus.size()+getmenus1.toString()+yes+getcomments.size()+support);
+           // System.out.println(is.toString()+getmenus.size()+getmenus1.toString()+yes+getcomments.size()+support);
         }
     };
 
@@ -79,12 +82,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //vegetable=
+                vegetable=new ArrayList<Vegetableinfo>();
                 vegetable = Http_Vegetable.getVegetable();
-                getmenus = Http_menus.getmenus(new Request_menu(1, 1, 10));
-                getmenus1 = Http_menuDetail.getmenus(1);
-                getcomments = Http_comments.getcomments(1);
-                yes = Http_support.support(1, "yes");
-                support = Http_postComment.support(1, "156315631");
+//                getmenus = Http_menus.getmenus(new Request_menu(1, 1, 10));
+               // getmenus1 = Http_menuDetail.getmenus(1);
+               // getcomments = Http_comments.getcomments(1);
+               // yes = Http_support.support(1, "yes");
+               // support = Http_postComment.support(1, "156315631");
 //                Log.i("TAg", String.valueOf(Http_Vegetable.getVegetable().size()));
                 mHandel.sendEmptyMessage(0);
             }

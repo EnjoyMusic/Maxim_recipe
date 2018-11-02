@@ -9,10 +9,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 //获取网络图片对象
 public class getdrawable {
-    Drawable drawable;
-    private URL url;
-    private String imgurl;
-    public Drawable getdrawable(final String path, final Context context){
+    static Drawable drawable;
+    private static URL url;
+    private static String imgurl;
+    public static Drawable getdrawable(final String path, final Context context){
         imgurl=values.Http+path;
         url=null;
    Thread thread= new Thread(){

@@ -21,7 +21,7 @@ public  class Recipedao {
     public Recipedao(Context context){
        recipeOpenhelp=new RecipeOpenhelp(context);
     }
-    public Recipedao getRecipedao(Context context){
+    public static Recipedao getRecipedao(Context context){
         if(recipedao==null){
             recipedao=new Recipedao(context);
         }
